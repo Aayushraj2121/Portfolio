@@ -54,6 +54,13 @@ export default function Credentials() {
                 Verify credential
                 <span aria-hidden="true"> ↗</span>
               </a>
+            ) : (
+              /* Rendered as plain text rather than a dead link until the real
+                 verification URL is available. */
+              <p className={styles.verifyPending}>
+                Verification link pending — the certificate scan below carries the credential
+                number.
+              </p>
             )}
           </div>
         </div>

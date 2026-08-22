@@ -44,7 +44,7 @@ export default function Credentials() {
               </div>
             </dl>
 
-            {CND.verifyUrl ? (
+            {CND.verifyUrl && (
               <a
                 href={CND.verifyUrl}
                 target="_blank"

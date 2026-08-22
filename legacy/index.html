@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayush Raj — Security Practitioner & CS Student</title>
+  <meta name="description" content="Ayush Raj — Second-year CS student and security practitioner. I build packet-level detection tools and break real web apps. EC-Council Certified Network Defender." />
+  <meta name="author" content="Ayush Raj" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ayush Raj — Security Practitioner" />
+  <meta property="og:description" content="Network defense and offensive web-app security. I work one layer deeper than the demo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aayushraj2121.github.io" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       STICKY NAV
+  ════════════════════════════════════════════════ -->
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="container">
+        <a href="#hero" class="nav-brand" aria-label="Ayush Raj — home">AR // SEC</a>
+        <ul class="nav-links" role="list">
+          <li><a href="#about" id="nav-src">SRC</a></li>
+          <li><a href="#projects" id="nav-payload">PAYLOAD</a></li>
+          <li><a href="#credentials" id="nav-options">OPTIONS</a></li>
+          <li><a href="#experience" id="nav-ttl">TTL</a></li>
+          <li><a href="#contact" id="nav-flags">FLAGS</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════
+         HERO — RFC 791 Bit-Field
+    ════════════════════════════════════════════════ -->
+    <section id="hero" class="hero" aria-label="Hero — identity bit-field">
+      <div class="container">
+
+        <!-- Desktop bit-field (hidden below 640px) -->
+        <div class="bitfield-wrap" aria-hidden="true">
+          <div class="bitfield" role="img" aria-label="RFC 791-style IP header diagram showing Ayush Raj's identity fields">
+
+            <!-- Bit ruler 0–31 -->
+            <div class="bit-ruler" aria-hidden="true">
+              <span>0</span><span data-minor>1</span><span data-minor>2</span><span data-minor>3</span>
+              <span data-minor>4</span><span data-minor>5</span><span data-minor>6</span><span data-minor>7</span>
+              <span data-minor>8</span><span data-minor>9</span><span>10</span><span data-minor>1</span>
+              <span data-minor>2</span><span data-minor>3</span><span data-minor>4</span><span data-minor>5</span>
+              <span data-minor>6</span><span data-minor>7</span><span data-minor>8</span><span data-minor>9</span>
+              <span>20</span><span data-minor>1</span><span data-minor>2</span><span data-minor>3</span>
+              <span data-minor>4</span><span data-minor>5</span><span data-minor>6</span><span data-minor>7</span>
+              <span data-minor>8</span><span data-minor>9</span><span>30</span><span data-minor>1</span>
+            </div>
+
+            <!-- Row 1: Ver | Role | Name -->
+            <div class="bitfield-row">
+              <div class="bf-field" style="flex:0 0 12.5%" tabindex="0" data-delay="0">
+                <div class="bf-field-name">Ver</div>
+                <div class="bf-field-value">v2</div>
+                <div class="bf-tooltip">Version 2 — 2nd-year CS student.</div>
+              </div>
+              <div class="bf-field" style="flex:0 0 12.5%" tabindex="0" data-delay="80">
+                <div class="bf-field-name">Role</div>
+                <div class="bf-field-value">Sec</div>
+                <div class="bf-tooltip">Security analyst in the making.</div>
+              </div>
+              <div class="bf-field" style="flex:1" tabindex="0" data-delay="160">
+                <div class="bf-field-name">Name</div>
+                <div class="bf-field-value">AYUSH RAJ</div>
+                <div class="bf-tooltip">Ayush Raj.</div>
+              </div>
+            </div>
+
+            <!-- Row 2: Focus | Flags -->
+            <div class="bitfield-row">
+              <div class="bf-field" style="flex:1" tabindex="0" data-delay="240">
+                <div class="bf-field-name">Focus</div>
+                <div class="bf-field-value">Network Defense &amp; Offensive Web</div>
+                <div class="bf-tooltip">Network defense and offensive web-app security.</div>
+              </div>
+              <div class="bf-field bf-field--flags" style="flex:0 0 25%" tabindex="0" data-delay="320">
+                <div class="bf-field-name">Flags</div>
+                <div class="bf-field-value">HIRE</div>
+                <div class="bf-tooltip">Set: available for hire.</div>
+              </div>
+            </div>
+
+            <!-- Row 3: Source -->
+            <div class="bitfield-row">
+              <div class="bf-field" style="flex:1" tabindex="0" data-delay="400">
+                <div class="bf-field-name">Source</div>
+                <div class="bf-field-value">Sharda University — B.Tech CS</div>
+                <div class="bf-tooltip">B.Tech Computer Science, Sharda University.</div>
+              </div>
+            </div>
+
+            <!-- Row 4: Options -->
+            <div class="bitfield-row">
+              <div class="bf-field" style="flex:1 1 34%" tabindex="0" data-delay="480">
+                <div class="bf-field-name">Options</div>
+                <div class="bf-field-value">EC-Council CND</div>
+                <div class="bf-tooltip">Certified Network Defender — ANSI-accredited.</div>
+              </div>
+              <div class="bf-field" style="flex:1 1 33%" tabindex="0" data-delay="540">
+                <div class="bf-field-name">Options</div>
+                <div class="bf-field-value">Scapy / Wireshark</div>
+                <div class="bf-tooltip">Packet analysis with Scapy and Wireshark.</div>
+              </div>
+              <div class="bf-field" style="flex:1 1 33%" tabindex="0" data-delay="580">
+                <div class="bf-field-name">Options</div>
+                <div class="bf-field-value">Burp Suite</div>
+                <div class="bf-tooltip">Web application security testing with Burp Suite.</div>
+              </div>
+            </div>
+
+          </div><!-- /.bitfield -->
+        </div><!-- /.bitfield-wrap -->
+
+        <!-- Mobile fallback: stacked field cards (shown below 640px) -->
+        <div class="bitfield-mobile" aria-label="Identity fields">
+          <div class="bfm-field">
+            <div class="bfm-label">Name</div>
+            <div class="bfm-value">Ayush Raj</div>
+          </div>
+          <div class="bfm-field">
+            <div class="bfm-label">Ver / Role</div>
+            <div class="bfm-value">v2 · Security analyst in the making</div>
+          </div>
+          <div class="bfm-field">
+            <div class="bfm-label">Focus</div>
+            <div class="bfm-value">Network Defense &amp; Offensive Web</div>
+          </div>
+          <div class="bfm-field bfm-field--flags">
+            <div class="bfm-label">Flags</div>
+            <div class="bfm-value">Available for hire</div>
+          </div>
+          <div class="bfm-field">
+            <div class="bfm-label">Source</div>
+            <div class="bfm-value">Sharda University — B.Tech CS</div>
+          </div>
+          <div class="bfm-field">
+            <div class="bfm-label">Options</div>
+            <div class="bfm-value">EC-Council CND · Scapy · Burp Suite</div>
+          </div>
+        </div><!-- /.bitfield-mobile -->
+
+        <!-- Hero copy -->
+        <div class="hero-copy">
+          <p class="eyebrow">AYUSH RAJ // SECURITY</p>
+          <h1>I work one layer<br>deeper than the demo.</h1>
+          <p class="hero-sub">
+            Second-year CS student and security practitioner. I build packet-level detection tools,
+            and I break real web apps to understand how they fail. EC-Council Certified Network Defender.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary" id="cta-dissections">
+              Read the dissections ↓
+            </a>
+            <div class="hero-secondary-links">
+              <a href="https://github.com/Aayushraj2121" target="_blank" rel="noopener noreferrer" id="link-github-hero">GitHub</a>
+              <a href="https://linkedin.com/in/ayush-raj-2294a0385" target="_blank" rel="noopener noreferrer" id="link-linkedin-hero">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- /#hero -->
+
+
+    <!-- ═══════════════════════════════════════════════
+         ABOUT — SRC
+    ════════════════════════════════════════════════ -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">SRC · About</span>
+          <h2 id="about-heading">Where I work</h2>
+        </div>
+        <p class="about-text">
+          I'm a second-year Computer Science student at Sharda University focused on
+          network defense and offensive web security. My work sits at two layers most
+          student projects skip: the packet and the exploit. On the defensive side I build
+          tools that read raw traffic — live capture, statistical anomaly detection, host-based
+          behavioral firewalls. On the offensive side I test real applications the way an
+          attacker would, then document what I find to professional standard. I care less
+          about shipping a demo than about being able to defend every decision inside it.
+        </p>
+      </div>
+    </section><!-- /#about -->
+
+
+    <!-- ═══════════════════════════════════════════════
+         PROJECTS — PAYLOAD
+    ════════════════════════════════════════════════ -->
+    <section id="projects" class="section" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">PAYLOAD · Projects</span>
+          <h2 id="projects-heading">What I've built &amp; broken</h2>
+        </div>
+
+        <div class="project-list" role="list">
+
+          <!-- ── PROJECT 1 — VAPT ── -->
+          <article class="project-item" role="listitem">
+            <div
+              class="project-header"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-controls="panel-vapt"
+              id="toggle-vapt"
+            >
+              <div class="project-meta">
+                <div class="project-title-row">
+                  <span class="project-title">Online Assessment Platform: Security Assessment</span>
+                  <span class="status-pill status-pill--completed" aria-label="Status: Completed">COMPLETED</span>
+                </div>
+                <p class="project-summary">
+                  Full VAPT of a Next.js online proctored coding platform — 9 findings across the severity spectrum.
+                </p>
+                <div class="severity-strip" aria-label="Finding severity summary">
+                  <span class="pill pill--crit">1 CRITICAL · CVSS 9.8</span>
+                  <span class="pill pill--high">1 HIGH</span>
+                  <span class="pill pill--med">3 MEDIUM</span>
+                  <span class="pill pill--low">4 LOW</span>
+                  <span class="pill pill--info">2 INFO</span>
+                </div>
+                <div class="project-tags" aria-label="Technology tags">
+                  <span class="tag">Burp Suite</span>
+                  <span class="tag">Manual VAPT</span>
+                  <span class="tag">OWASP Top 10</span>
+                  <span class="tag">CVSS</span>
+                  <span class="tag">CWE</span>
+                  <span class="tag">Web</span>
+                </div>
+              </div>
+              <div class="project-expand-btn" aria-hidden="true">
+                <span class="expand-icon">+</span>
+              </div>
+            </div>
+            <div class="project-panel" id="panel-vapt" role="region" aria-labelledby="toggle-vapt" hidden>
+              <div class="project-panel-inner">
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Problem</div>
+                  <div class="dissection-content">
+                    Online proctored coding platforms are a uniquely dangerous attack surface: by
+                    design they accept untrusted code, compile it, and run it, while also trying to enforce exam
+                    integrity. I performed a full vulnerability assessment and penetration test of one such
+                    platform — a Next.js-based online assessment system — end to end.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Approach</div>
+                  <div class="dissection-content">
+                    Manual testing driven through Burp Suite (Proxy, Repeater, Intruder) alongside authenticated
+                    scanning. Every finding was mapped to the OWASP Top 10 (2021) and a CWE, scored with CVSS,
+                    and documented with a reproducible proof-of-concept and a concrete remediation.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Key Findings (redacted to technique)</div>
+                  <div class="dissection-content">
+                    <ul>
+                      <li>
+                        <strong>Critical — Remote Code Execution.</strong> The backend compiled and executed submitted C
+                        with no sandbox. A payload invoking an OS command executed at the operating-system level;
+                        impact was proven by a deliberate timed delay in the server's response.
+                        <em>Remediation: isolated execution (containers with dropped capabilities, seccomp/AppArmor), restricted compiler surface.</em>
+                      </li>
+                      <li>
+                        <strong>High — Vertical privilege escalation.</strong> Role authorization was enforced only in
+                        client-side routing, so a low-privilege session token replayed against admin/teacher endpoints
+                        returned protected data.
+                        <em>Remediation: server-side RBAC on every protected route.</em>
+                      </li>
+                      <li>
+                        <strong>Medium —</strong> CSRF on the submission endpoint; a proctoring anti-cheat bypass
+                        (posting code straight to the API, past the browser's paste/copy listeners); no rate limiting
+                        or lockout on login.
+                      </li>
+                      <li>
+                        <strong>Low / Info —</strong> Missing anti-clickjacking headers, reflected user input,
+                        HSTS not enforced, cacheable sensitive responses.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">What it demonstrates</div>
+                  <div class="dissection-content">
+                    I can test a real, complex application methodically, prove impact instead of asserting it,
+                    and communicate risk in the language both a security team and a developer need.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Responsible Disclosure</div>
+                  <div class="dissection-content">
+                    <div class="blockquote-note">
+                      Target identity, live host, credentials, and working exploit payloads are deliberately
+                      withheld. Findings were reported to the system's owner. This page describes methodology
+                      and technique only.
+                    </div>
+                  </div>
+                </div>
+
+                <p class="no-link-note">No public repo / report link — by design.</p>
+
+              </div>
+            </div>
+          </article><!-- /VAPT -->
+
+
+          <!-- ── PROJECT 2 — OmniSniff ── -->
+          <article class="project-item" role="listitem">
+            <div
+              class="project-header"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-controls="panel-omnisniff"
+              id="toggle-omnisniff"
+            >
+              <div class="project-meta">
+                <div class="project-title-row">
+                  <span class="project-title">OmniSniff: Network Traffic Analyzer &amp; Intrusion Detector</span>
+                  <span class="status-pill status-pill--completed">COMPLETED</span>
+                </div>
+                <p class="project-summary">
+                  Live packet capture with Scapy feeding a rolling-average anomaly detector and real-time Flask-SocketIO dashboard.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Scapy</span>
+                  <span class="tag">Flask-SocketIO</span>
+                  <span class="tag">Detection</span>
+                </div>
+              </div>
+              <div class="project-expand-btn" aria-hidden="true">
+                <span class="expand-icon">+</span>
+              </div>
+            </div>
+            <div class="project-panel" id="panel-omnisniff" role="region" aria-labelledby="toggle-omnisniff" hidden>
+              <div class="project-panel-inner">
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Problem</div>
+                  <div class="dissection-content">
+                    Most student security projects live at the web layer. Real attacks often show up on
+                    the wire first — a port scan, a sudden traffic spike, a host talking to something it
+                    never talks to. Reading that requires working at packet level, which off-the-shelf
+                    dashboards abstract away.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Approach / Architecture</div>
+                  <div class="dissection-content">
+                    Live capture with Scapy feeds a detection layer that uses rolling-average baselines
+                    and sliding-window analysis to separate normal variance from a scan or spike. Alerts
+                    stream to a Flask-SocketIO dashboard in real time and export to CSV/HTML reports.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Pipeline</div>
+                  <div class="dissection-content">
+                    Capture (Scapy sniff) → per-flow feature extraction → sliding-window aggregation
+                    → rolling-average baseline comparison → alerting → live dashboard + report export.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Tradeoffs &amp; Decisions</div>
+                  <div class="dissection-content">
+                    Chose rolling-average / sliding-window statistics over a heavyweight ML model:
+                    real-time, explainable, and needs no training data. The cost is that it catches
+                    statistical anomalies, not semantically novel attacks — a deliberate, documented trade.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Failure Modes / Limits</div>
+                  <div class="dissection-content">
+                    Capture throughput is bounded by Scapy/Python, so it's designed for monitoring
+                    representative traffic, not saturating a gigabit link. That ceiling is understood,
+                    and I can explain the architecture (AF_PACKET, kernel-bypass, eBPF/XDP) that would lift it.
+                  </div>
+                </div>
+
+                <div class="project-links">
+                  <!-- TODO: Replace href with real repo URL -->
+                  <a href="https://github.com/Aayushraj2121" target="_blank" rel="noopener noreferrer" id="link-omnisniff-github">
+                    GitHub →
+                    <span style="font-size:0.625rem;color:var(--ink-soft);margin-left:4px;">(URL pending)</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </article><!-- /OmniSniff -->
+
+
+          <!-- ── PROJECT 3 — App-Context Aware Firewall ── -->
+          <article class="project-item" role="listitem">
+            <div
+              class="project-header"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-controls="panel-firewall"
+              id="toggle-firewall"
+            >
+              <div class="project-meta">
+                <div class="project-title-row">
+                  <span class="project-title">Application-Context Aware Firewall</span>
+                  <span class="status-pill status-pill--progress">IN PROGRESS</span>
+                </div>
+                <p class="project-summary">
+                  Host-based firewall that combines live threat-intel lookups, behavioral profiling, and process-tree
+                  lineage to catch malware riding trusted apps.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Threat Intel</span>
+                  <span class="tag">Behavioral Detection</span>
+                  <span class="tag">Host Security</span>
+                </div>
+              </div>
+              <div class="project-expand-btn" aria-hidden="true">
+                <span class="expand-icon">+</span>
+              </div>
+            </div>
+            <div class="project-panel" id="panel-firewall" role="region" aria-labelledby="toggle-firewall" hidden>
+              <div class="project-panel-inner">
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Problem</div>
+                  <div class="dissection-content">
+                    Traditional firewalls decide on ports and IPs. They can't tell that a trusted
+                    application has been hijacked: if Chrome is allowed out and malware rides Chrome,
+                    the traffic passes. That gap is how a lot of real exfiltration and malware
+                    command-and-control succeeds.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Approach — Three Innovations</div>
+                  <div class="dissection-content">
+                    <ul>
+                      <li>
+                        <strong>Live threat intelligence.</strong> Every outbound destination is checked in real time
+                        against AbuseIPDB / VirusTotal; known-malicious IPs are blocked instantly.
+                      </li>
+                      <li>
+                        <strong>Behavioral anomaly detection.</strong> The firewall learns each application's normal
+                        traffic profile and flags exfiltration-shaped deviations — e.g. a document editor suddenly
+                        pushing hundreds of MB to an unknown host.
+                      </li>
+                      <li>
+                        <strong>Process-tree lineage.</strong> It inspects how a process was spawned to catch
+                        masquerading: a chrome.exe launched silently by an Office macro is treated very differently
+                        from one the user opened.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Open Questions (ongoing)</div>
+                  <div class="dissection-content">
+                    Tuning false positives from behavioral learning; free-tier threat-intel rate limits;
+                    where enforcement should live (userland vs kernel hooks).
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">What it demonstrates</div>
+                  <div class="dissection-content">
+                    I think about detection at the layer attackers actually operate — process and behavior —
+                    not just the perimeter.
+                  </div>
+                </div>
+
+                <div class="project-links">
+                  <!-- TODO: Replace href with real repo URL -->
+                  <a href="https://github.com/Aayushraj2121" target="_blank" rel="noopener noreferrer" id="link-firewall-github">
+                    GitHub →
+                    <span style="font-size:0.625rem;color:var(--ink-soft);margin-left:4px;">(URL pending)</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </article><!-- /Firewall -->
+
+
+          <!-- ── PROJECT 4 — Evently ── -->
+          <article class="project-item" role="listitem">
+            <div
+              class="project-header"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-controls="panel-evently"
+              id="toggle-evently"
+            >
+              <div class="project-meta">
+                <div class="project-title-row">
+                  <span class="project-title">Evently: Full-Stack Event Booking &amp; Management Platform</span>
+                  <span class="status-pill status-pill--live">LIVE</span>
+                </div>
+                <p class="project-summary">
+                  MERN stack platform with JWT auth, OTP, three-role RBAC enforced server-side,
+                  QR tickets, and analytics dashboards.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Node/Express</span>
+                  <span class="tag">MongoDB</span>
+                  <span class="tag">JWT</span>
+                  <span class="tag">RBAC</span>
+                </div>
+              </div>
+              <div class="project-expand-btn" aria-hidden="true">
+                <span class="expand-icon">+</span>
+              </div>
+            </div>
+            <div class="project-panel" id="panel-evently" role="region" aria-labelledby="toggle-evently" hidden>
+              <div class="project-panel-inner">
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Problem</div>
+                  <div class="dissection-content">
+                    I wanted to build a real multi-role web application end to end — the kind of system
+                    I test from the offensive side — so I'd understand first-hand how authentication,
+                    authorization, and state get implemented, and where they break.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Approach</div>
+                  <div class="dissection-content">
+                    MERN stack. JWT authentication with OTP verification; role-based access control
+                    across three roles (attendee / organizer / admin) enforced server-side; event CRUD
+                    with image upload (Multer); booking with unique references and QR ticket stubs;
+                    HTML confirmation email; wishlist and reviews; analytics dashboards with CSV export.
+                    ~20 REST endpoints across User, Event, and Booking models.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Security-Conscious Build</div>
+                  <div class="dissection-content">
+                    <div class="blockquote-note">
+                      Having found broken access control in a penetration test — where role checks lived
+                      only in the client — I built Evently's authorization as server-side middleware on
+                      every protected route.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Tradeoffs &amp; Decisions</div>
+                  <div class="dissection-content">
+                    MongoDB for schema flexibility and iteration speed; JWT for stateless auth;
+                    auto-publish on event creation for a frictionless organizer flow.
+                    <br><br>
+                    <em>Credit: built with a collaborator (@ayushjaiswal36937-dev).</em>
+                  </div>
+                </div>
+
+                <div class="project-links">
+                  <a href="https://event-booking-system-dun.vercel.app" target="_blank" rel="noopener noreferrer" id="link-evently-live">Live →</a>
+                  <a href="https://github.com/Aayushraj2121/Event_booking" target="_blank" rel="noopener noreferrer" id="link-evently-github">GitHub →</a>
+                </div>
+
+              </div>
+            </div>
+          </article><!-- /Evently -->
+
+
+          <!-- ── PROJECT 5 — Drift-Sense ── -->
+          <article class="project-item" role="listitem">
+            <div
+              class="project-header"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-controls="panel-driftsense"
+              id="toggle-driftsense"
+            >
+              <div class="project-meta">
+                <div class="project-title-row">
+                  <span class="project-title">Drift-Sense: Synthetic Data Generation + Siamese CNN</span>
+                  <span class="status-pill status-pill--completed">COMPLETED</span>
+                </div>
+                <p class="project-summary">
+                  Synthetic SEM wafer-image generator + Siamese CNN trained with normalized cross-correlation,
+                  validated against a 30+ test-case benchmark harness.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">OpenCV</span>
+                  <span class="tag">Siamese CNN</span>
+                  <span class="tag">Synthetic Data</span>
+                </div>
+              </div>
+              <div class="project-expand-btn" aria-hidden="true">
+                <span class="expand-icon">+</span>
+              </div>
+            </div>
+            <div class="project-panel" id="panel-driftsense" role="region" aria-labelledby="toggle-driftsense" hidden>
+              <div class="project-panel-inner">
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Problem</div>
+                  <div class="dissection-content">
+                    The hardest part of many ML problems isn't the model — it's that no labelled dataset
+                    exists. For wafer-defect detection there was none, so I generated one.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Approach</div>
+                  <div class="dissection-content">
+                    Built a synthetic SEM wafer-image generator to produce labelled defect / non-defect pairs,
+                    trained a Siamese CNN using normalized cross-correlation for similarity, and validated
+                    against a benchmark harness of 30+ test cases.
+                  </div>
+                </div>
+
+                <div class="dissection-block">
+                  <div class="dissection-label">Why it matters for security</div>
+                  <div class="dissection-content">
+                    The same instinct — manufacture representative data and a rigorous evaluation harness
+                    when real data doesn't exist — is exactly what unsupervised threat detection needs.
+                    It's the bridge between my ML work and my security work.
+                  </div>
+                </div>
+
+                <div class="project-links">
+                  <!-- TODO: Replace href with real repo URL -->
+                  <a href="https://github.com/Aayushraj2121" target="_blank" rel="noopener noreferrer" id="link-driftsense-github">
+                    GitHub →
+                    <span style="font-size:0.625rem;color:var(--ink-soft);margin-left:4px;">(URL pending)</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </article><!-- /Drift-Sense -->
+
+        </div><!-- /.project-list -->
+      </div>
+    </section><!-- /#projects -->
+
+
+    <!-- ═══════════════════════════════════════════════
+         CREDENTIALS & SKILLS — OPTIONS
+    ════════════════════════════════════════════════ -->
+    <section id="credentials" class="section" aria-labelledby="credentials-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">OPTIONS · Credentials &amp; Skills</span>
+          <h2 id="credentials-heading">Credentials &amp; Skills</h2>
+        </div>
+
+        <!-- CND Anchor Card -->
+        <div class="cnd-card" aria-label="EC-Council Certified Network Defender credential">
+          <div class="cnd-badge-art" aria-hidden="true">
+            <!-- CND badge SVG — replace with real badge image via <img> once you have it -->
+            <!-- TODO: Add real badge: <img src="assets/CND_9AF22971F673.png" alt="EC-Council CND badge" width="72" height="72"> -->
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <polygon points="24,4 44,14 44,34 24,44 4,34 4,14" fill="none" stroke="#5B3DF5" stroke-width="1.5"/>
+              <polygon points="24,8 40,16.5 40,31.5 24,40 8,31.5 8,16.5" fill="#5B3DF5" opacity="0.15"/>
+              <text x="24" y="22" font-family="monospace" font-size="7" font-weight="700" fill="#5B3DF5" text-anchor="middle">EC-</text>
+              <text x="24" y="31" font-family="monospace" font-size="7" font-weight="700" fill="#5B3DF5" text-anchor="middle">CND</text>
+            </svg>
+          </div>
+          <div class="cnd-info">
+            <div class="cnd-name">EC-Council Certified Network Defender</div>
+            <div class="cnd-meta">
+              <span>ANSI-Accredited</span>
+              <span>Credential #ECC3120469785</span>
+              <span>Issued 21 May 2026 · Valid 3 years</span>
+            </div>
+            <!-- TODO: Replace href with real Credly/Aspen verification URL -->
+            <a href="#" class="cnd-verify" id="link-cnd-verify" target="_blank" rel="noopener noreferrer">
+              ↗ Verify credential
+              <span style="font-size:0.625rem;color:var(--ink-soft);margin-left:4px;">(URL pending)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Secondary strip -->
+        <div class="secondary-certs">
+          <div class="secondary-cert-row">
+            <span class="cert-icon">CSDF</span>
+            <div>
+              <div class="cert-name">Advanced Certificate Program in Cyber Security &amp; Digital Forensics</div>
+              <div class="cert-meta">Sharda University — Center for Cyber Security &amp; Cryptology · Feb 2026</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PortSwigger practice block -->
+        <div class="practice-block">
+          <div class="practice-header">
+            <div>
+              <div class="practice-name">PortSwigger Web Security Academy</div>
+              <div class="practice-meta">Hands-on practice — 47 labs solved</div>
+            </div>
+            <div class="practice-stats">
+              <span class="pill pill--high" style="background:#fef0e3;">20 Practitioner</span>
+              <span class="pill pill--low">25 Apprentice</span>
+              <span class="pill pill--crit" style="background:#fde8ec;">2 Expert</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="practice-block" style="margin-bottom:0;">
+          <div class="practice-header">
+            <div>
+              <div class="practice-name">Smart India Hackathon 2025</div>
+              <div class="practice-meta">Internal round · Team "Loop Coder" · Sept 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills table -->
+        <table class="skills-table" aria-label="Skills grouped by evidence">
+          <thead>
+            <tr>
+              <th scope="col">Group</th>
+              <th scope="col">Tools &amp; Concepts</th>
+              <th scope="col">Evidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Offensive / Web App Security</td>
+              <td>Burp Suite, manual VAPT, OWASP Top 10, CWE, CVSS, Nmap, Metasploit, Hydra, Kali Linux</td>
+              <td class="skill-evidence">VAPT assessment (9 findings); 47 PortSwigger labs</td>
+            </tr>
+            <tr>
+              <td>Network / Packet Analysis</td>
+              <td>Python, Scapy, Wireshark, tcpdump, Flask-SocketIO</td>
+              <td class="skill-evidence">OmniSniff</td>
+            </tr>
+            <tr>
+              <td>Detection &amp; Host Security</td>
+              <td>Behavioral anomaly detection, process-tree lineage, threat-intel APIs (AbuseIPDB, VirusTotal)</td>
+              <td class="skill-evidence">Application-Context Aware Firewall</td>
+            </tr>
+            <tr>
+              <td>Full-Stack Engineering</td>
+              <td>React, Node.js, Express, MongoDB, JWT, RBAC, REST</td>
+              <td class="skill-evidence">Evently</td>
+            </tr>
+            <tr>
+              <td>ML / Data</td>
+              <td>Synthetic data generation, Siamese CNN, OpenCV, evaluation harnesses</td>
+              <td class="skill-evidence">Drift-Sense</td>
+            </tr>
+            <tr>
+              <td>Languages</td>
+              <td>Python (primary), JavaScript, C++, C, Java</td>
+              <td class="skill-evidence">across projects</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Mobile skills fallback -->
+        <div class="skills-mobile" aria-label="Skills by group (mobile)">
+          <div class="skills-mobile-row">
+            <div class="skills-mobile-group">Offensive / Web App Security</div>
+            <div class="skills-mobile-tools">Burp Suite · VAPT · OWASP Top 10 · CVSS · Nmap · Kali Linux</div>
+          </div>
+          <div class="skills-mobile-row">
+            <div class="skills-mobile-group">Network / Packet Analysis</div>
+            <div class="skills-mobile-tools">Python · Scapy · Wireshark · tcpdump · Flask-SocketIO</div>
+          </div>
+          <div class="skills-mobile-row">
+            <div class="skills-mobile-group">Detection &amp; Host Security</div>
+            <div class="skills-mobile-tools">Behavioral anomaly detection · process-tree lineage · AbuseIPDB · VirusTotal</div>
+          </div>
+          <div class="skills-mobile-row">
+            <div class="skills-mobile-group">Full-Stack Engineering</div>
+            <div class="skills-mobile-tools">React · Node.js · Express · MongoDB · JWT · RBAC</div>
+          </div>
+          <div class="skills-mobile-row">
+            <div class="skills-mobile-group">ML / Data</div>
+            <div class="skills-mobile-tools">Siamese CNN · Synthetic data generation · OpenCV</div>
+          </div>
+          <div class="skills-mobile-row">
+            <div class="skills-mobile-group">Languages</div>
+            <div class="skills-mobile-tools">Python (primary) · JavaScript · C++ · C · Java</div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- /#credentials -->
+
+
+    <!-- ═══════════════════════════════════════════════
+         EXPERIENCE — TTL
+    ════════════════════════════════════════════════ -->
+    <section id="experience" class="section" aria-labelledby="experience-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">TTL · Experience</span>
+          <h2 id="experience-heading">Experience</h2>
+        </div>
+
+        <div class="experience-item">
+          <div>
+            <div class="exp-role">Cybersecurity Intern</div>
+            <div class="exp-company">SkillOrbit / Sofzenix IT Solutions</div>
+            <p class="exp-desc">
+              Worked on defensive security best practices and vulnerability remediation documentation.
+            </p>
+          </div>
+          <div class="exp-period">May – Jun 2026</div>
+        </div>
+
+      </div>
+    </section><!-- /#experience -->
+
+
+    <!-- ═══════════════════════════════════════════════
+         CONTACT — FLAGS
+    ════════════════════════════════════════════════ -->
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: var(--sp-3);">
+          <span class="section-label">FLAGS · Contact</span>
+          <h2 id="contact-heading">Get in touch</h2>
+        </div>
+
+        <div class="flags-headline">FLAGS: available for hire</div>
+
+        <p class="contact-tagline">
+          Open to security internships. The fastest way to reach me is email.
+        </p>
+
+        <div class="contact-links">
+          <a href="mailto:ayushraj36937@gmail.com" class="contact-link" id="link-email">
+            <span class="contact-link-icon">✉</span>
+            ayushraj36937@gmail.com
+            <span class="contact-link-label">Email</span>
+          </a>
+          <a href="https://github.com/Aayushraj2121" target="_blank" rel="noopener noreferrer" class="contact-link" id="link-github-contact">
+            <span class="contact-link-icon">⌥</span>
+            github.com/Aayushraj2121
+            <span class="contact-link-label">GitHub</span>
+          </a>
+          <a href="https://linkedin.com/in/ayush-raj-2294a0385" target="_blank" rel="noopener noreferrer" class="contact-link" id="link-linkedin-contact">
+            <span class="contact-link-icon">in</span>
+            linkedin.com/in/ayush-raj-2294a0385
+            <span class="contact-link-label">LinkedIn</span>
+          </a>
+        </div>
+
+      </div>
+    </section><!-- /#contact -->
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p class="footer-mono">EOF // built by Ayush Raj // 2026</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+/* The RFC 791 bit-field, rendered as a glass HUD panel. */
+
+.wrap {
+  width: 100%;
+}
+
+.hud {
+  position: relative;
+  padding: var(--sp-2);
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--hairline-lit);
+  border-radius: var(--radius-lg);
+  /* Outer violet bloom + inset top highlight, so the panel reads as lit glass. */
+  box-shadow:
+    0 0 0 1px rgba(124, 92, 255, 0.07),
+    0 24px 70px -20px rgba(0, 0, 0, 0.85),
+    0 0 46px -14px var(--signal-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055);
+}
+
+@media (max-width: 640px) {
+  .hud {
+    display: none;
+  }
+}
+
+.hudHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.hudTitle {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--ink-mid);
+}
+
+.hudRfc {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+}
+
+/* Bit ruler 0–31. Exactly 32 equal columns, matching the field flex bases. */
+.ruler {
+  display: grid;
+  grid-template-columns: repeat(32, 1fr);
+  margin-bottom: 6px;
+}
+
+.tick,
+.tickMajor {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  line-height: 1;
+  text-align: center;
+  color: var(--ink-dim);
+}
+
+.tick {
+  opacity: 0.45;
+}
+
+.tickMajor {
+  color: var(--signal-lit);
+  opacity: 0.8;
+}
+
+.tick::after,
+.tickMajor::after {
+  content: '';
+  display: block;
+  width: 1px;
+  margin: 3px auto 0;
+  background: currentColor;
+}
+
+.tick::after {
+  height: 3px;
+}
+
+.tickMajor::after {
+  height: 6px;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  gap: 4px;
+  /* Fields carry percentage flex bases; wrapping would break the 32-bit grid. */
+  flex-wrap: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Fields
+   ----------------------------------------------------------------------- */
+
+.field {
+  position: relative;
+  min-width: 0;
+  padding: 9px 11px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.026), rgba(255, 255, 255, 0));
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.22s var(--ease),
+    background-color 0.22s var(--ease),
+    box-shadow 0.22s var(--ease),
+    transform 0.22s var(--ease);
+}
+
+.field:hover,
+.field:focus-visible {
+  background-color: rgba(124, 92, 255, 0.07);
+  border-color: var(--signal);
+  box-shadow: 0 0 20px -6px var(--signal-glow);
+  transform: translateY(-1px);
+}
+
+.fieldName {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.fieldValue {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+  overflow-wrap: break-word;
+
+  /* Reveal: values slide up and clip in from the left. */
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+  transform: translateY(3px);
+  transition:
+    clip-path 0.5s var(--ease),
+    opacity 0.3s ease,
+    transform 0.5s var(--ease);
+}
+
+.fieldValue[data-revealed] {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fieldValue {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* The FLAGS field carries the availability signal, so it stays lit and pulses. */
+.fieldAccent {
+  background-color: var(--signal-tint);
+  border-color: rgba(124, 92, 255, 0.42);
+  animation: flagPulse 3.4s ease-in-out infinite;
+}
+
+.fieldAccent .fieldName {
+  color: var(--signal-lit);
+}
+
+.fieldAccent .fieldValue {
+  color: var(--signal-lit);
+  letter-spacing: 0.06em;
+}
+
+@keyframes flagPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(124, 92, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 24px -4px var(--signal-glow);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fieldAccent {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tooltip — RFC-style annotation on hover / focus
+   ----------------------------------------------------------------------- */
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 20;
+  width: max-content;
+  max-width: 240px;
+  padding: 7px 10px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--bg-elevated);
+  border: 1px solid var(--hairline-lit);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s var(--ease);
+}
+
+.field:hover .tooltip,
+.field:focus-visible .tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* --------------------------------------------------------------------------
+   Stacked layout, below 640px
+   ----------------------------------------------------------------------- */
+
+.stacked {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (max-width: 640px) {
+  .stacked {
+    display: flex;
+  }
+}
+
+.stackedItem {
+  padding: 10px 12px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--hairline);
+  border-left: 2px solid var(--hairline-lit);
+  border-radius: var(--radius);
+}
+
+.stackedAccent {
+  background-color: var(--signal-tint);
+  border-left-color: var(--signal);
+}
+
+.stackedLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.stackedAccent .stackedLabel {
+  color: var(--signal-lit);
+}
+
+.stackedValue {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+
+.stackedAccent .stackedValue {
+  color: var(--signal-lit);
+}

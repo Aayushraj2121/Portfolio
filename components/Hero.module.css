@@ -1,0 +1,264 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: min(92vh, 880px);
+  padding-block: calc(var(--nav-h) + var(--sp-5)) var(--sp-5);
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+
+@media (max-width: 860px) {
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Portrait
+   ----------------------------------------------------------------------- */
+
+.portrait {
+  position: relative;
+  flex: 0 0 auto;
+  width: 248px;
+  overflow: visible;
+}
+
+@media (max-width: 860px) {
+  .portrait {
+    width: 168px;
+  }
+}
+
+.portraitImg {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--hairline-lit);
+  border-radius: var(--radius);
+  /* Cool the photo slightly so it sits inside the dark palette instead of
+     glowing warm against it. */
+  filter: saturate(0.92) contrast(1.04) brightness(0.97);
+  box-shadow:
+    0 28px 70px -22px rgba(0, 0, 0, 0.9),
+    0 0 40px -18px var(--signal-glow);
+}
+
+/* HUD corner brackets. */
+.bracket {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--signal);
+  box-shadow: 0 0 10px -2px var(--signal-glow);
+}
+
+.bracket[data-corner='tl'] {
+  top: -5px;
+  left: -5px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.bracket[data-corner='tr'] {
+  top: -5px;
+  right: -5px;
+  border-bottom: none;
+  border-left: none;
+}
+
+.bracket[data-corner='bl'] {
+  bottom: -5px;
+  left: -5px;
+  border-top: none;
+  border-right: none;
+}
+
+.bracket[data-corner='br'] {
+  right: -5px;
+  bottom: -5px;
+  border-top: none;
+  border-left: none;
+}
+
+/* Slow sweep across the portrait, reinforcing the "live readout" idea. */
+.scanline {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scanline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 28%;
+  background: linear-gradient(180deg, transparent, rgba(124, 92, 255, 0.14), transparent);
+  animation: sweep 6.5s ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0%,
+  100% {
+    top: -30%;
+  }
+  50% {
+    top: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Copy
+   ----------------------------------------------------------------------- */
+
+.copy {
+  min-width: 0;
+}
+
+/* Packet trails pass behind the hero text. A soft shadow in the page colour
+   separates the glyphs from any line crossing them, without drawing a visible
+   panel behind the copy. */
+.copy h1,
+.sub {
+  text-shadow: 0 0 18px var(--bg-base), 0 0 6px var(--bg-base);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--signal-lit);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  background: var(--live);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
+  animation: blink 2.6s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statusDot {
+    animation: none;
+  }
+}
+
+.sub {
+  max-width: 56ch;
+  margin-top: var(--sp-2);
+  font-size: 1.0625rem;
+  color: var(--ink-mid);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-3);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 22px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: linear-gradient(180deg, var(--signal-lit), var(--signal));
+  border-radius: var(--radius);
+  box-shadow:
+    0 10px 30px -10px var(--signal-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.2s var(--ease),
+    filter 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow:
+    0 16px 40px -10px var(--signal-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.secondary {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.secondary a {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--ink-mid);
+  transition: color 0.18s ease;
+}
+
+.secondary a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.24s var(--ease);
+}
+
+.secondary a:hover {
+  color: var(--ink);
+}
+
+.secondary a:hover::after {
+  transform: scaleX(1);
+}

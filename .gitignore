@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# LibreOffice temp / lock files
+.~lock.*#
+*.tmp
+
+# env
+.env*
+!.env.example
+
+# editor
+.vscode/
+.idea/

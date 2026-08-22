@@ -1,0 +1,374 @@
+.card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0));
+  background-color: var(--bg-panel);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.card:hover {
+  border-color: var(--hairline-lit);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.9);
+}
+
+.card[data-open] {
+  border-color: rgba(124, 92, 255, 0.34);
+  box-shadow:
+    0 24px 60px -26px rgba(0, 0, 0, 0.9),
+    0 0 40px -22px var(--signal-glow);
+  transform: none;
+}
+
+/* Signal rail down the left edge, lit while the card is open. */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--signal);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.card[data-open]::before,
+.card:hover::before {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Header (the toggle)
+   ----------------------------------------------------------------------- */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  width: 100%;
+  padding: var(--sp-3);
+  text-align: left;
+}
+
+@media (max-width: 520px) {
+  .header {
+    padding: var(--sp-2);
+  }
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.titleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.header:hover .title,
+.card[data-open] .title {
+  color: var(--signal-lit);
+}
+
+.status {
+  flex: 0 0 auto;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  border-radius: 3px;
+  border: 1px solid;
+}
+
+.status[data-status='COMPLETED'] {
+  color: var(--ink-mid);
+  background: rgba(154, 166, 184, 0.08);
+  border-color: rgba(154, 166, 184, 0.24);
+}
+
+.status[data-status='IN PROGRESS'] {
+  color: var(--med);
+  background: var(--med-tint);
+  border-color: var(--med-edge);
+}
+
+.status[data-status='LIVE'] {
+  color: var(--live);
+  background: var(--live-tint);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.summary {
+  max-width: 72ch;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-mid);
+}
+
+.severities,
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  background: rgba(255, 255, 255, 0.028);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Expand affordance — a plus that rotates into a minus
+   ----------------------------------------------------------------------- */
+
+.toggle {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.header:hover .toggle,
+.card[data-open] .toggle {
+  background: var(--signal-tint);
+  border-color: var(--signal);
+}
+
+.toggleIcon,
+.toggleIcon::before {
+  content: '';
+  display: block;
+  background: var(--ink-mid);
+  border-radius: 1px;
+  transition:
+    transform 0.32s var(--ease),
+    opacity 0.32s ease,
+    background-color 0.22s ease;
+}
+
+.toggleIcon {
+  position: relative;
+  width: 11px;
+  height: 1.5px;
+}
+
+.toggleIcon::before {
+  position: absolute;
+  inset: 0;
+  transform: rotate(90deg);
+}
+
+.header:hover .toggleIcon,
+.header:hover .toggleIcon::before,
+.card[data-open] .toggleIcon,
+.card[data-open] .toggleIcon::before {
+  background: var(--signal-lit);
+}
+
+/* Open: the vertical stroke folds away, leaving a minus. */
+.card[data-open] .toggleIcon::before {
+  transform: rotate(0deg);
+  opacity: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Panel
+   ----------------------------------------------------------------------- */
+
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.42s var(--ease);
+}
+
+.card[data-open] .panel {
+  grid-template-rows: 1fr;
+}
+
+.panelInner {
+  overflow: hidden;
+  /* Kept out of the tab order and the a11y tree while collapsed. The
+     transition holds visibility through the collapse animation. */
+  visibility: hidden;
+  transition: visibility 0.42s var(--ease);
+}
+
+.card[data-open] .panelInner {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panelInner {
+    transition: none;
+  }
+}
+
+/* Inner padding lives on a child so it doesn't fight the 0fr collapse. */
+.panelInner > *:first-child {
+  margin-top: 0;
+}
+
+.dissection {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-top: 1px solid var(--hairline);
+}
+
+@media (max-width: 720px) {
+  .dissection {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: var(--sp-2);
+  }
+}
+
+.dissectionLabel {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--signal-lit);
+}
+
+.dissectionBody {
+  min-width: 0;
+  font-size: 0.9375rem;
+  color: var(--ink-mid);
+}
+
+.dissectionBody p + p {
+  margin-top: var(--sp-2);
+}
+
+.dissectionBody strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.dissectionBody em {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--ink-dim);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.list li {
+  position: relative;
+  padding-left: var(--sp-2);
+}
+
+.list li::before {
+  content: '';
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 5px;
+  height: 1px;
+  background: var(--signal);
+}
+
+/* Set-apart callout for disclosure notes and design rationale. */
+.note {
+  padding: 12px var(--sp-2);
+  font-size: 0.9375rem;
+  color: var(--ink-mid);
+  background: rgba(124, 92, 255, 0.055);
+  border-left: 2px solid var(--signal);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.noLink,
+.links {
+  padding: var(--sp-2) var(--sp-3);
+  border-top: 1px solid var(--hairline);
+}
+
+@media (max-width: 720px) {
+  .noLink,
+  .links {
+    padding: var(--sp-2);
+  }
+}
+
+.noLink {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--signal-lit);
+  transition:
+    color 0.18s ease,
+    transform 0.18s var(--ease);
+}
+
+.link:hover {
+  color: var(--ink);
+  transform: translateX(2px);
+}
+
+.pending {
+  margin-left: 4px;
+  font-size: 0.625rem;
+  color: var(--ink-dim);
+}

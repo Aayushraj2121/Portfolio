@@ -1,0 +1,200 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-3);
+  background: rgba(7, 8, 11, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: fadeIn 0.2s ease;
+}
+
+@media (max-width: 520px) {
+  .backdrop {
+    padding: var(--sp-1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 920px;
+  max-height: 100%;
+  background: var(--bg-panel);
+  border: 1px solid var(--hairline-lit);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 40px 100px -30px rgba(0, 0, 0, 0.95),
+    0 0 60px -30px var(--signal-glow);
+  overflow: hidden;
+  animation: riseIn 0.26s var(--ease);
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .dialog {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Title bar
+   ----------------------------------------------------------------------- */
+
+.bar {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.barText {
+  min-width: 0;
+  flex: 1;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.subtitle {
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  font-size: 0.8125rem;
+  color: var(--ink-mid);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.close:hover {
+  color: var(--ink);
+  background: var(--signal-tint);
+  border-color: var(--signal);
+}
+
+/* --------------------------------------------------------------------------
+   Image stage
+   ----------------------------------------------------------------------- */
+
+.stage {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: var(--sp-2);
+  overflow: auto;
+  background: var(--bg-void);
+}
+
+.image {
+  width: auto;
+  max-width: 100%;
+  /* Leaves room for the bar and footer so the dialog never exceeds the
+     viewport and the certificate is always fully visible. */
+  max-height: calc(100vh - 260px);
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+}
+
+@media (max-width: 520px) {
+  .image {
+    max-height: calc(100vh - 230px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Footer — pager and download
+   ----------------------------------------------------------------------- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: 12px var(--sp-2);
+  border-top: 1px solid var(--hairline);
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagerButton {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 0.8125rem;
+  color: var(--ink-mid);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.pagerButton:hover {
+  color: var(--signal-lit);
+  background: var(--signal-tint);
+  border-color: var(--signal);
+}
+
+.counter {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}
+
+.download {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--signal-lit);
+  transition: color 0.18s ease;
+}
+
+.download:hover {
+  color: var(--ink);
+}

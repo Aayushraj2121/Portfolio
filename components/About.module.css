@@ -1,0 +1,11 @@
+.text {
+  max-width: 74ch;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-mid);
+}
+
+/* Lead-in emphasis: the opening line carries the most weight. */
+.text::first-line {
+  color: var(--ink);
+}

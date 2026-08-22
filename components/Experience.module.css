@@ -1,0 +1,87 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--bg-panel);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color 0.24s ease,
+    transform 0.24s var(--ease);
+}
+
+.item:hover {
+  border-color: var(--hairline-lit);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 620px) {
+  .item {
+    flex-direction: column;
+    gap: var(--sp-1);
+    padding: var(--sp-2);
+  }
+}
+
+/* Signal rail, matching the treatment on project cards. */
+.item::before {
+  content: '';
+  position: absolute;
+  top: var(--sp-3);
+  bottom: var(--sp-3);
+  left: 0;
+  width: 2px;
+  background: var(--signal);
+  border-radius: 0 2px 2px 0;
+}
+
+@media (max-width: 620px) {
+  .item::before {
+    top: var(--sp-2);
+    bottom: var(--sp-2);
+  }
+}
+
+.body {
+  min-width: 0;
+}
+
+.role {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.company {
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--signal-lit);
+}
+
+.description {
+  max-width: 64ch;
+  margin-top: var(--sp-1);
+  font-size: 0.9375rem;
+  color: var(--ink-mid);
+}
+
+.period {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: var(--ink-dim);
+}

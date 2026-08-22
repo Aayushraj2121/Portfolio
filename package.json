@@ -1,0 +1,25 @@
+{
+  "name": "ayush-raj-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Ayush Raj — security portfolio. Next.js static export, deploys to GitHub Pages.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "assets": "python3 scripts/build_assets.py"
+  },
+  "dependencies": {
+    "next": "16.2.12",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.2",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.8.3"
+  }
+}

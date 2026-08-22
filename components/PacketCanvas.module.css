@@ -1,0 +1,45 @@
+/* Hero backdrop: packet canvas + grid + glow, masked so it dissolves into the
+   page rather than ending on a hard edge. */
+
+.wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg-void);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Fade toward the bottom and both sides so packets appear to arrive from and
+     depart into the surrounding dark. */
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.55) 62%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.55) 62%, transparent 100%),
+    linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+}
+
+/* Faint engineering grid, a nod to the printed-RFC origin of the design. */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(44, 52, 68, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44, 52, 68, 0.22) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 62% at 50% 26%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 62% at 50% 26%, #000 0%, transparent 78%);
+}
+
+/* Violet bloom behind the bit-field, plus the fade into --bg-base. */
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 46% at 50% 34%, rgba(124, 92, 255, 0.17), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 82% 12%, rgba(34, 211, 238, 0.07), transparent 70%),
+    linear-gradient(180deg, transparent 55%, var(--bg-base) 100%);
+}

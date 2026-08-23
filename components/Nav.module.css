@@ -1,3 +1,5 @@
+/* Nav — CYBER_SENTINEL.v3 style */
+
 .header {
   position: sticky;
   top: 0;
@@ -6,106 +8,137 @@
 
 .nav {
   height: var(--nav-h);
-  border-bottom: 1px solid transparent;
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    backdrop-filter 0.3s ease;
+  background: rgba(13, 15, 20, 0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
 
-/* The bar stays transparent over the hero and frosts once the page scrolls. */
 .nav[data-scrolled] {
-  background: rgba(10, 12, 17, 0.78);
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  border-bottom-color: var(--hairline);
+  background: rgba(7, 8, 11, 0.97);
+  border-bottom-color: var(--border-lit);
 }
 
 .inner {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--sp-2);
-  height: 100%;
+  gap: var(--sp-3);
 }
 
+/* Brand — CYBER_SENTINEL.v3 */
 .brand {
-  flex: 0 0 auto;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--ink);
-  transition: color 0.18s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s var(--ease);
 }
 
-.brand:hover {
-  color: var(--signal-lit);
+.brand:hover { color: var(--green); }
+
+.brandDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green-glow);
 }
 
-.brandSlash {
-  color: var(--signal);
+.brandVer {
+  color: var(--ink-dim);
+  font-size: 0.625rem;
 }
 
+/* Nav links */
 .links {
   display: flex;
-  gap: var(--sp-1);
-  /* Below ~420px the five labels can exceed the bar; scrolling the list keeps
-     the page itself from gaining a horizontal scrollbar. */
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.links::-webkit-scrollbar {
-  display: none;
+  align-items: center;
+  gap: 4px;
 }
 
 .link {
   position: relative;
-  display: block;
-  padding: 6px 10px;
+  padding: 5px 12px;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
-  white-space: nowrap;
-  color: var(--ink-dim);
-  border-radius: 3px;
-  transition:
-    color 0.18s ease,
-    background-color 0.18s ease;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease), background 0.15s var(--ease);
 }
 
 .link:hover {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border-lit);
 }
 
 .link[data-active] {
-  color: var(--signal-lit);
+  color: var(--green);
+  background: var(--green-tint);
+  border-color: var(--border-accent);
 }
 
-/* Lit underline marking the section currently in view. */
+/* Active underline */
 .link[data-active]::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 10px;
-  right: 10px;
+  bottom: -1px;
+  left: 12px;
+  right: 12px;
   height: 1px;
-  background: var(--signal);
-  box-shadow: 0 0 8px var(--signal-glow);
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green-glow);
 }
 
-@media (max-width: 420px) {
-  .link {
-    padding: 6px 7px;
-    font-size: 0.625rem;
-    letter-spacing: 0.08em;
-  }
+/* Resume button */
+.resumeBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--border-lit);
+  border-radius: var(--radius);
+  white-space: nowrap;
+  transition: border-color 0.15s var(--ease), color 0.15s var(--ease), background 0.15s var(--ease);
+}
 
-  .link[data-active]::after {
-    left: 7px;
-    right: 7px;
-  }
+.resumeBtn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-tint);
+}
+
+.resumeIcon {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .links { gap: 2px; }
+  .link { padding: 4px 8px; font-size: 0.625rem; }
+  .resumeBtn { display: none; }
+}
+
+@media (max-width: 520px) {
+  .link { padding: 4px 6px; letter-spacing: 0.06em; }
 }

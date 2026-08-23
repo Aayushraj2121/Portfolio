@@ -20,11 +20,11 @@ export const LINKS = {
 } as const;
 
 export const NAV_ITEMS = [
-  { id: 'about', label: 'SRC' },
-  { id: 'projects', label: 'PAYLOAD' },
-  { id: 'credentials', label: 'OPTIONS' },
-  { id: 'experience', label: 'TTL' },
-  { id: 'contact', label: 'FLAGS' },
+  { id: 'about', label: 'Terminal' },
+  { id: 'projects', label: 'Arsenal' },
+  { id: 'credentials', label: 'Vault' },
+  { id: 'experience', label: 'Identity' },
+  { id: 'contact', label: 'Contact' },
 ] as const;
 
 /**

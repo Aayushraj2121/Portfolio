@@ -8,7 +8,7 @@ export default function Credentials() {
     <section id="credentials" className="section" aria-labelledby="credentials-heading">
       <div className="container">
         <div className="sectionHeader">
-          <span className="sectionLabel">OPTIONS · Credentials &amp; Skills</span>
+          <span className="sectionLabel">VAULT · Credentials</span>
           <h2 id="credentials-heading">Credentials &amp; Skills</h2>
         </div>
 

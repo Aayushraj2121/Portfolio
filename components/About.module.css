@@ -1,11 +1,78 @@
+/* About — Terminal section (Tactical Capabilities) */
+
 .text {
-  max-width: 74ch;
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  font-size: 1rem;
+  line-height: 1.8;
   color: var(--ink-mid);
+  max-width: 760px;
 }
 
-/* Lead-in emphasis: the opening line carries the most weight. */
-.text::first-line {
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* Capability card — matches Stitch SYS_01 / SYS_02 style */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3);
+  position: relative;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.card:hover {
+  border-color: var(--border-lit);
+  background: var(--bg-card-hover);
+}
+
+.cardId {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+}
+
+.cardIcon {
+  width: 32px;
+  height: 32px;
+  background: var(--green-tint);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin-bottom: var(--sp-2);
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.cardDesc {
+  font-size: 0.875rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+  margin-bottom: var(--sp-2);
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }

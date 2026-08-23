@@ -1,68 +1,66 @@
 /* ============================================================================
-   Wire Format — dark
+   CYBER_SENTINEL.v3 — Design System
    ----------------------------------------------------------------------------
-   Design tokens, reset, and shared primitives. Component-specific rules live in
-   co-located CSS Modules.
-
-   Colour rules carried over from the spec:
-     · violet (--signal) is reserved for interactive and live elements;
-     · severity colours appear only inside the VAPT project;
-     · every text colour below clears WCAG AA on its intended background.
+   Dark terminal / cyberpunk aesthetic matching the Stitch prototype.
+   Green accent (#00e676), monospace labels, dark card surfaces.
    ========================================================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 :root {
-  /* Surfaces, void → elevated */
-  --bg-void: #07080b;
-  --bg-base: #0a0c11;
-  --bg-panel: #10131a;
-  --bg-elevated: #161a23;
-  --bg-glass: rgba(16, 19, 26, 0.62);
+  /* ── Surfaces ── */
+  --bg-void:     #07080b;
+  --bg-base:     #0d0f14;
+  --bg-panel:    #12151c;
+  --bg-card:     #161a23;
+  --bg-card-hover: #1c212e;
+  --bg-glass:    rgba(18, 21, 28, 0.85);
 
-  --hairline: #1f2530;
-  --hairline-lit: #2c3444;
+  /* ── Borders ── */
+  --border:      #1f2530;
+  --border-lit:  #2c3444;
+  --border-accent: rgba(0, 230, 118, 0.3);
 
-  /* Text */
-  --ink: #e8ecf4;
-  --ink-mid: #9aa6b8;
-  /* Dim labels are small (9-11px mono), so they still need the 4.5:1 normal-text
-     ratio rather than the 3:1 large-text allowance. This value clears it on every
-     surface it is used against, including --bg-elevated, the lightest of them. */
-  --ink-dim: #7a87a0;
+  /* ── Text ── */
+  --ink:         #e8ecf4;
+  --ink-mid:     #9aa6b8;
+  --ink-dim:     #5c6a80;
 
-  /* Signal — interactive / live only */
-  --signal: #7c5cff;
-  --signal-lit: #9b82ff;
-  --signal-glow: rgba(124, 92, 255, 0.35);
-  --signal-tint: rgba(124, 92, 255, 0.1);
+  /* ── Accent — terminal green ── */
+  --green:       #00e676;
+  --green-dim:   #00b85a;
+  --green-tint:  rgba(0, 230, 118, 0.08);
+  --green-glow:  rgba(0, 230, 118, 0.25);
 
-  /* Packet accent, used sparingly */
-  --cyan: #22d3ee;
-  --cyan-tint: rgba(34, 211, 238, 0.1);
+  /* ── Secondary accent — cyan ── */
+  --cyan:        #22d3ee;
+  --cyan-tint:   rgba(34, 211, 238, 0.1);
 
-  /* Severity — VAPT only */
-  --crit: #ff5c7a;
-  --crit-tint: rgba(255, 92, 122, 0.1);
-  --crit-edge: rgba(255, 92, 122, 0.3);
-  --high: #ff9f45;
-  --high-tint: rgba(255, 159, 69, 0.1);
-  --high-edge: rgba(255, 159, 69, 0.3);
-  --med: #f5d66b;
-  --med-tint: rgba(245, 214, 107, 0.1);
-  --med-edge: rgba(245, 214, 107, 0.3);
-  --low: #8b97ac;
-  --low-tint: rgba(139, 151, 172, 0.1);
-  --low-edge: rgba(139, 151, 172, 0.3);
+  /* ── Signal (interactive) ── */
+  --signal:      #7c5cff;
+  --signal-lit:  #9b82ff;
+  --signal-glow: rgba(124, 92, 255, 0.3);
 
-  /* Status */
-  --live: #34d399;
-  --live-tint: rgba(52, 211, 153, 0.12);
+  /* ── Severity (VAPT) ── */
+  --crit:        #ff5c7a;
+  --crit-tint:   rgba(255, 92, 122, 0.1);
+  --crit-edge:   rgba(255, 92, 122, 0.3);
+  --high:        #ff9f45;
+  --high-tint:   rgba(255, 159, 69, 0.1);
+  --high-edge:   rgba(255, 159, 69, 0.3);
+  --med:         #f5d66b;
+  --med-tint:    rgba(245, 214, 107, 0.1);
+  --med-edge:    rgba(245, 214, 107, 0.3);
+  --low:         #8b97ac;
+  --low-tint:    rgba(139, 151, 172, 0.1);
+  --low-edge:    rgba(139, 151, 172, 0.3);
 
-  /* Type */
-  --font-display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* ── Typography ── */
+  --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:    'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Spacing — 8px base */
+  /* ── Spacing ── */
   --sp-1: 8px;
   --sp-2: 16px;
   --sp-3: 24px;
@@ -70,12 +68,16 @@
   --sp-5: 64px;
   --sp-6: 96px;
 
-  --radius: 4px;
-  --radius-lg: 10px;
+  /* ── Shape ── */
+  --radius:    4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 
-  --shell: 1120px;
-  --nav-h: 60px;
+  /* ── Layout ── */
+  --shell:  1120px;
+  --nav-h:  60px;
 
+  /* ── Motion ── */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -83,27 +85,16 @@
    Reset
    ----------------------------------------------------------------------- */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
 
 html {
-  /* Anchors land below the sticky nav rather than under it. */
   scroll-padding-top: calc(var(--nav-h) + var(--sp-2));
   -webkit-text-size-adjust: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 }
 
 body {
@@ -112,23 +103,30 @@ body {
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.65;
-  /* Guards against any child forcing the page wider than the viewport. */
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-img,
-svg,
-canvas {
-  display: block;
-  max-width: 100%;
+/* Subtle scanline texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+img, svg, canvas { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
 
 button {
   font: inherit;
@@ -138,54 +136,39 @@ button {
   cursor: pointer;
 }
 
-ul {
-  list-style: none;
-}
+ul { list-style: none; }
 
 :focus-visible {
-  outline: 2px solid var(--signal-lit);
+  outline: 1px solid var(--green);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
 ::selection {
-  background: var(--signal);
-  color: #fff;
+  background: var(--green);
+  color: #000;
 }
 
 /* --------------------------------------------------------------------------
    Type scale
    ----------------------------------------------------------------------- */
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
-h1 {
-  font-size: clamp(2.1rem, 6vw, 3.75rem);
-  font-weight: 800;
-}
+h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.25rem); }
+h3 { font-size: 1.125rem; font-weight: 600; }
 
-h2 {
-  font-size: clamp(1.6rem, 3.6vw, 2.35rem);
-}
-
-h3 {
-  font-size: 1.125rem;
-}
-
-p {
-  text-wrap: pretty;
-}
+p { text-wrap: pretty; }
 
 /* --------------------------------------------------------------------------
-   Shared primitives
+   Layout primitives
    ----------------------------------------------------------------------- */
 
 .container {
@@ -196,31 +179,22 @@ p {
 }
 
 @media (max-width: 520px) {
-  .container {
-    padding-inline: var(--sp-2);
-  }
+  .container { padding-inline: var(--sp-2); }
 }
 
 .section {
   position: relative;
   padding-block: var(--sp-6);
-  /* Hairline divider that fades out at both ends. */
-  border-top: 1px solid transparent;
-  border-image: linear-gradient(
-      90deg,
-      transparent,
-      var(--hairline) 15%,
-      var(--hairline) 85%,
-      transparent
-    )
-    1;
+  border-top: 1px solid var(--border);
 }
 
 @media (max-width: 720px) {
-  .section {
-    padding-block: var(--sp-5);
-  }
+  .section { padding-block: var(--sp-5); }
 }
+
+/* --------------------------------------------------------------------------
+   Section header — terminal style
+   ----------------------------------------------------------------------- */
 
 .sectionHeader {
   margin-bottom: var(--sp-4);
@@ -229,39 +203,113 @@ p {
 .sectionLabel {
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-1);
-  margin-bottom: var(--sp-1);
+  gap: 8px;
+  margin-bottom: 10px;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--signal-lit);
+  color: var(--green);
 }
 
-/* Small leading tick, so the label reads as a field marker. */
 .sectionLabel::before {
-  content: '';
-  width: 14px;
-  height: 1px;
-  background: var(--signal);
-  box-shadow: 0 0 6px var(--signal-glow);
+  content: '●';
+  font-size: 0.5rem;
+  animation: blink 2s step-end infinite;
 }
 
-/* Screen-reader-only text that stays out of the layout. */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+/* --------------------------------------------------------------------------
+   Shared pill — severity / status badge
+   ----------------------------------------------------------------------- */
+
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 3px;
+  border: 1px solid;
+}
+
+.pill[data-level='crit']          { color: var(--crit); background: var(--crit-tint); border-color: var(--crit-edge); }
+.pill[data-level='high']          { color: var(--high); background: var(--high-tint); border-color: var(--high-edge); }
+.pill[data-level='med']           { color: var(--med);  background: var(--med-tint);  border-color: var(--med-edge); }
+.pill[data-level='low'],
+.pill[data-level='info']          { color: var(--low);  background: var(--low-tint);  border-color: var(--low-edge); }
+
+/* --------------------------------------------------------------------------
+   Tag chip — tool / category label
+   ----------------------------------------------------------------------- */
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink-mid);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-lit);
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Status online badge
+   ----------------------------------------------------------------------- */
+
+.statusOnline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  text-transform: uppercase;
+}
+
+.statusOnline::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green-glow);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 4px var(--green-glow); }
+  50%       { box-shadow: 0 0 12px var(--green-glow); }
+}
+
+/* --------------------------------------------------------------------------
+   Utility
+   ----------------------------------------------------------------------- */
+
 .visuallyHidden {
   position: absolute;
   width: 1px;
   height: 1px;
   margin: -1px;
-  padding: 0;
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
 
-/* Skip link — visible only once focused. */
 .skipLink {
   position: absolute;
   top: var(--sp-1);
@@ -270,51 +318,10 @@ p {
   padding: 10px 16px;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  color: var(--ink);
-  background: var(--bg-elevated);
-  border: 1px solid var(--signal);
+  color: var(--bg-base);
+  background: var(--green);
   border-radius: var(--radius);
   transform: translateY(-200%);
 }
 
-.skipLink:focus-visible {
-  transform: translateY(0);
-}
-
-/* Severity / status pill — the `data-level` attribute picks the palette. */
-.pill {
-  display: inline-block;
-  padding: 3px 9px;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  border-radius: 3px;
-  border: 1px solid;
-}
-
-.pill[data-level='crit'] {
-  color: var(--crit);
-  background: var(--crit-tint);
-  border-color: var(--crit-edge);
-}
-
-.pill[data-level='high'] {
-  color: var(--high);
-  background: var(--high-tint);
-  border-color: var(--high-edge);
-}
-
-.pill[data-level='med'] {
-  color: var(--med);
-  background: var(--med-tint);
-  border-color: var(--med-edge);
-}
-
-.pill[data-level='low'],
-.pill[data-level='info'] {
-  color: var(--low);
-  background: var(--low-tint);
-  border-color: var(--low-edge);
-}
+.skipLink:focus-visible { transform: translateY(0); }

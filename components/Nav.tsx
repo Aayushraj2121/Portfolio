@@ -1,16 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { NAV_ITEMS } from '@/lib/site';
+import { LINKS, NAV_ITEMS } from '@/lib/site';
 import styles from './Nav.module.css';
 
-/**
- * Sticky nav with scroll-spy.
- *
- * The observer's rootMargin biases the active band toward the upper third of
- * the viewport, so the highlighted item matches what the visitor is reading
- * rather than whatever last touched the bottom edge.
- */
 export default function Nav() {
   const [active, setActive] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -49,9 +42,12 @@ export default function Nav() {
         aria-label="Main navigation"
       >
         <div className={`container ${styles.inner}`}>
-          <a href="#hero" className={styles.brand} aria-label="Ayush Raj — home">
-            AR <span className={styles.brandSlash}>//</span> SEC
+          <a href="#hero" className={styles.brand} aria-label="Cyber Sentinel — home">
+            <span className={styles.brandDot} aria-hidden="true" />
+            CYBER_SENTINEL
+            <span className={styles.brandVer}>.v3</span>
           </a>
+
           <ul className={styles.links}>
             {NAV_ITEMS.map((item) => (
               <li key={item.id}>
@@ -66,6 +62,17 @@ export default function Nav() {
               </li>
             ))}
           </ul>
+
+          <a
+            href={LINKS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.resumeBtn}
+            aria-label="View GitHub profile"
+          >
+            <span className={styles.resumeIcon}>⌥</span>
+            GITHUB
+          </a>
         </div>
       </nav>
     </header>

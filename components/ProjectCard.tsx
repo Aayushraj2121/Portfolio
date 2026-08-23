@@ -45,24 +45,34 @@ function BlockContent({ block }: { block: Block }) {
   );
 }
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({ project, index }: { project: Project; index?: number }) {
   const [open, setOpen] = useState(false);
   const panelId = `panel-${project.slug}`;
   const headingId = `heading-${project.slug}`;
+  const cardId = `ID: ${String(index !== undefined ? index + 1 : 0).padStart(3, '0')}`;
+
+  // Derive category from first tag or status
+  const categories = project.tags.slice(0, 2);
 
   return (
     <article className={styles.card} data-open={open || undefined}>
-      {/*
-        A real <button> gives Enter/Space activation and focus handling for free,
-        replacing the hand-rolled keydown logic in the original main.js.
-      */}
       <button
         type="button"
         className={styles.header}
         aria-expanded={open}
         aria-controls={panelId}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => setOpen((v) => !v)}
       >
+        {/* Top row: category tags + ID */}
+        <span className={styles.topRow}>
+          <span className={styles.categories}>
+            {categories.map((cat) => (
+              <span key={cat} className={styles.catTag}>{cat}</span>
+            ))}
+          </span>
+          <span className={styles.cardId}>{cardId}</span>
+        </span>
+
         <span className={styles.meta}>
           <span className={styles.titleRow}>
             <h3 className={styles.title} id={headingId}>
@@ -96,27 +106,29 @@ export default function ProjectCard({ project }: { project: Project }) {
           </span>
         </span>
 
-        <span className={styles.toggle} aria-hidden="true">
-          <span className={styles.toggleIcon} />
+        {/* Bottom row */}
+        <span className={styles.bottomRow}>
+          <span className={styles.quickLinks}>
+            {project.links && project.links.slice(0, 2).map((link) => (
+              <span key={link.label} className={styles.quickLink}>
+                ◇ {link.label}
+              </span>
+            ))}
+          </span>
+          <span className={styles.expandBtn}>
+            {open ? 'COLLAPSE' : 'VIEW_REPORT'}
+          </span>
         </span>
       </button>
 
-      {/*
-        `grid-template-rows: 0fr -> 1fr` animates to the panel's true content
-        height, so the transition holds however long a dissection runs.
-        The inner wrapper's `visibility` is transitioned rather than using the
-        `hidden` attribute: `hidden` would snap the panel shut with no animation,
-        while `visibility: hidden` still keeps the collapsed content out of the
-        tab order and the accessibility tree.
-      */}
       <div className={styles.panel} id={panelId} role="region" aria-labelledby={headingId}>
         <div className={styles.panelInner}>
           {project.dissections.map((dissection) => (
             <div key={dissection.label} className={styles.dissection}>
               <h4 className={styles.dissectionLabel}>{dissection.label}</h4>
               <div className={styles.dissectionBody}>
-                {dissection.blocks.map((block, index) => (
-                  <BlockContent key={index} block={block} />
+                {dissection.blocks.map((block, idx) => (
+                  <BlockContent key={idx} block={block} />
                 ))}
               </div>
             </div>

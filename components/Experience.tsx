@@ -6,7 +6,7 @@ export default function Experience() {
     <section id="experience" className="section" aria-labelledby="experience-heading">
       <div className="container">
         <div className="sectionHeader">
-          <span className="sectionLabel">TTL · Experience</span>
+          <span className="sectionLabel">IDENTITY · Experience</span>
           <h2 id="experience-heading">Experience</h2>
         </div>
 

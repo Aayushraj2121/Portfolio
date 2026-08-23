@@ -1,10 +1,13 @@
+/* Hero — Terminal boot screen */
+
 .hero {
   position: relative;
+  min-height: calc(100vh - var(--nav-h));
   display: flex;
-  align-items: center;
-  min-height: min(92vh, 880px);
-  padding-block: calc(var(--nav-h) + var(--sp-5)) var(--sp-5);
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
+  padding-block: var(--sp-6);
 }
 
 .inner {
@@ -12,253 +15,181 @@
   z-index: 1;
 }
 
+/* ── Top: portrait + copy ── */
 .top {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: var(--sp-4);
-  margin-bottom: var(--sp-4);
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-5);
 }
 
-@media (max-width: 860px) {
-  .top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--sp-3);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Portrait
-   ----------------------------------------------------------------------- */
-
+/* ── Portrait ── */
 .portrait {
   position: relative;
-  flex: 0 0 auto;
-  width: 248px;
-  overflow: visible;
-}
-
-@media (max-width: 860px) {
-  .portrait {
-    width: 168px;
-  }
+  width: 220px;
+  flex-shrink: 0;
 }
 
 .portraitImg {
   width: 100%;
   height: auto;
-  border: 1px solid var(--hairline-lit);
-  border-radius: var(--radius);
-  /* Cool the photo slightly so it sits inside the dark palette instead of
-     glowing warm against it. */
-  filter: saturate(0.92) contrast(1.04) brightness(0.97);
-  box-shadow:
-    0 28px 70px -22px rgba(0, 0, 0, 0.9),
-    0 0 40px -18px var(--signal-glow);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top;
+  filter: grayscale(20%) contrast(1.05);
+  border-radius: var(--radius-md);
 }
 
-/* HUD corner brackets. */
+/* HUD corner brackets */
 .bracket {
   position: absolute;
-  width: 18px;
-  height: 18px;
-  border: 1.5px solid var(--signal);
-  box-shadow: 0 0 10px -2px var(--signal-glow);
+  width: 16px;
+  height: 16px;
+  border-color: var(--green);
+  border-style: solid;
+  opacity: 0.8;
 }
 
-.bracket[data-corner='tl'] {
-  top: -5px;
-  left: -5px;
-  border-right: none;
-  border-bottom: none;
-}
+.bracket[data-corner='tl'] { top: -4px; left: -4px; border-width: 2px 0 0 2px; border-radius: 2px 0 0 0; }
+.bracket[data-corner='tr'] { top: -4px; right: -4px; border-width: 2px 2px 0 0; border-radius: 0 2px 0 0; }
+.bracket[data-corner='bl'] { bottom: -4px; left: -4px; border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
+.bracket[data-corner='br'] { bottom: -4px; right: -4px; border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
 
-.bracket[data-corner='tr'] {
-  top: -5px;
-  right: -5px;
-  border-bottom: none;
-  border-left: none;
-}
-
-.bracket[data-corner='bl'] {
-  bottom: -5px;
-  left: -5px;
-  border-top: none;
-  border-right: none;
-}
-
-.bracket[data-corner='br'] {
-  right: -5px;
-  bottom: -5px;
-  border-top: none;
-  border-left: none;
-}
-
-/* Slow sweep across the portrait, reinforcing the "live readout" idea. */
+/* Scanline sweep */
 .scanline {
   position: absolute;
   inset: 0;
-  border-radius: var(--radius);
-  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 230, 118, 0.04) 50%,
+    transparent 100%
+  );
+  animation: scan 3s ease-in-out infinite;
   pointer-events: none;
 }
 
-.scanline::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 28%;
-  background: linear-gradient(180deg, transparent, rgba(124, 92, 255, 0.14), transparent);
-  animation: sweep 6.5s ease-in-out infinite;
+@keyframes scan {
+  0%   { background-position: 0 -100%; }
+  100% { background-position: 0 200%; }
 }
 
-@keyframes sweep {
-  0%,
-  100% {
-    top: -30%;
-  }
-  50% {
-    top: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scanline::after {
-    animation: none;
-    opacity: 0;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Copy
-   ----------------------------------------------------------------------- */
-
+/* ── Copy ── */
 .copy {
-  min-width: 0;
-}
-
-/* Packet trails pass behind the hero text. A soft shadow in the page colour
-   separates the glyphs from any line crossing them, without drawing a visible
-   panel behind the copy. */
-.copy h1,
-.sub {
-  text-shadow: 0 0 18px var(--bg-base), 0 0 6px var(--bg-base);
+  max-width: 600px;
 }
 
 .eyebrow {
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin-bottom: var(--sp-2);
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
-  color: var(--signal-lit);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 18px;
 }
 
 .statusDot {
-  width: 6px;
-  height: 6px;
-  background: var(--live);
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--green);
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
-  animation: blink 2.6s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--green-glow);
+  animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
-  }
-  50% {
-    opacity: 0.55;
-    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.04);
-  }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 4px var(--green-glow); }
+  50%       { box-shadow: 0 0 14px var(--green-glow); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .statusDot {
-    animation: none;
-  }
+.heading {
+  margin-bottom: 20px;
+  color: var(--ink);
 }
 
 .sub {
-  max-width: 56ch;
-  margin-top: var(--sp-2);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   color: var(--ink-mid);
+  line-height: 1.7;
+  margin-bottom: var(--sp-4);
+  max-width: 520px;
 }
 
+/* ── Actions ── */
 .actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: var(--sp-3);
-  margin-top: var(--sp-3);
+  flex-wrap: wrap;
 }
 
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 12px 22px;
+  gap: 8px;
+  padding: 10px 22px;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: #fff;
-  background: linear-gradient(180deg, var(--signal-lit), var(--signal));
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--green);
   border-radius: var(--radius);
-  box-shadow:
-    0 10px 30px -10px var(--signal-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition:
-    transform 0.2s var(--ease),
-    box-shadow 0.2s var(--ease),
-    filter 0.2s ease;
+  transition: opacity 0.15s var(--ease), box-shadow 0.15s var(--ease), transform 0.15s var(--ease);
 }
 
 .cta:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.08);
-  box-shadow:
-    0 16px 40px -10px var(--signal-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  opacity: 0.9;
+  box-shadow: 0 0 20px var(--green-glow);
+  transform: translateY(-1px);
 }
 
 .secondary {
   display: flex;
+  align-items: center;
   gap: var(--sp-2);
 }
 
 .secondary a {
-  position: relative;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ink-mid);
-  transition: color 0.18s ease;
-}
-
-.secondary a::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--signal);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.24s var(--ease);
+  padding: 8px 14px;
+  border: 1px solid var(--border-lit);
+  border-radius: var(--radius);
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
 }
 
 .secondary a:hover {
-  color: var(--ink);
+  color: var(--green);
+  border-color: var(--border-accent);
 }
 
-.secondary a:hover::after {
-  transform: scaleX(1);
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .top {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+    text-align: left;
+  }
+
+  .portrait {
+    width: 140px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero { padding-block: var(--sp-5); }
+  .actions { gap: var(--sp-2); }
 }

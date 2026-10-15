@@ -16,7 +16,7 @@ export const SITE = {
 export const LINKS = {
   github: 'https://github.com/Aayushraj2121',
   linkedin: 'https://linkedin.com/in/ayush-raj-2294a0385',
-  email: 'ayushraj36937@gmail.com',
+  email: 'ayushjaiswal36937@gmail.com',
 } as const;
 
 export const NAV_ITEMS = [

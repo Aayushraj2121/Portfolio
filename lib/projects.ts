@@ -1,5 +1,5 @@
 /**
- * The five project dissections, moved verbatim out of the original index.html.
+ * The project dissections, moved verbatim out of the original index.html.
  *
  * Rich text is modelled as typed inline segments rather than HTML strings, so
  * the renderer stays free of `dangerouslySetInnerHTML` and the copy stays
@@ -326,5 +326,75 @@ export const PROJECTS: Project[] = [
       },
     ],
     links: [{ label: 'GitHub', href: 'https://github.com/Aayushraj2121', pending: true }],
+  },
+
+  {
+    slug: 'ibvap',
+    title: 'IBVAP — Intelligent Border Video Analytics Platform',
+    status: 'COMPLETED',
+    summary:
+      'Tactical border-surveillance platform for SIH26187 and the Ministry of Home Affairs SSB, combining six-camera analytics, virtual fencing, and tamper-evident evidence.',
+    tags: [
+      'Python',
+      'YOLOv8',
+      'ByteTrack',
+      'ANPR',
+      'FastAPI',
+      'Computer Vision',
+    ],
+    dissections: [
+      {
+        label: 'Mission',
+        blocks: [
+          p(
+            'Built for a Sector-7 Tactical Border Outpost, IBVAP turns a multi-camera feed into an operational command centre for human and vehicle detection, tracking, intrusion alerts, and auditable incident evidence.'
+          ),
+        ],
+      },
+      {
+        label: 'Detection & Surveillance',
+        blocks: [
+          {
+            kind: 'list',
+            items: [
+              [
+                { strong: 'Multi-object tracking.' },
+                ' YOLOv8n with ByteTrack detects and tracks people and vehicles across the tactical grid, including crawling and prone-person detection.',
+              ],
+              [
+                { strong: 'Identity and vehicle intelligence.' },
+                ' Indian ANPR is paired with a BOLO hotlist, while on-prem YuNet/SFace face recognition avoids sending biometric data to external services.',
+              ],
+              [
+                { strong: 'All-weather visibility.' },
+                ' CLAHE/MOG2 processing supports night scenes and FLIR thermal surveillance extends coverage beyond visible-light cameras.',
+              ],
+            ],
+          },
+        ],
+      },
+      {
+        label: 'Security Architecture',
+        blocks: [
+          p(
+            'Dynamic polygon virtual fencing models the permitted boundary per camera, camera tamper detection flags interference, and a SHA-256 chained evidence ledger preserves event integrity. Section 65B certificate generation packages incidents for legally defensible review.'
+          ),
+        ],
+      },
+      {
+        label: 'Operations',
+        blocks: [
+          p(
+            'code/engine.py runs the unified six-camera tactical grid; code/dashboard.py exposes the FastAPI web command centre for operators, alerts, surveillance status, and evidence workflows.'
+          ),
+        ],
+      },
+    ],
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/Aayushraj2121/IBVAP-border-fensing',
+      },
+    ],
   },
 ];

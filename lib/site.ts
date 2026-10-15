@@ -114,4 +114,11 @@ export const EXPERIENCE = [
     description:
       'Worked on defensive security best practices and vulnerability remediation documentation.',
   },
+  {
+    role: 'President',
+    company: 'Cybersecurity, Threat Prevention and Digital Forensics Club',
+    period: 'Current',
+    description:
+      'Currently lead the autonomous club recognized by Sharda University, Greater Noida, Uttar Pradesh.',
+  },
 ] as const;

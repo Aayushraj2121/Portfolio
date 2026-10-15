@@ -78,6 +78,28 @@ export const CERTIFICATES: Certificate[] = [
     width: 1244,
     height: 974,
   },
+  {
+    slug: 'sih-2026-achievement',
+    title: 'Internal Smart India Hackathon 2026 — Certificate of Achievement',
+    issuer: 'Sharda University · Team "Red List26"',
+    date: '10–11 Sept 2026',
+    image: '/certs/sih-2026-achievement.webp',
+    thumb: '/certs/sih-2026-achievement-thumb.webp',
+    width: 1584,
+    height: 1224,
+    pdf: '/certs/sih-2026-achievement.pdf',
+  },
+  {
+    slug: 'sih-2026-top-50',
+    title: 'Internal Smart India Hackathon 2026 — Top 50 Team',
+    issuer: 'Sharda University · Team "Red26"',
+    date: '10–11 Sept 2026',
+    image: '/certs/sih-2026-top-50.webp',
+    thumb: '/certs/sih-2026-top-50-thumb.webp',
+    width: 1584,
+    height: 1224,
+    pdf: '/certs/sih-2026-top-50.pdf',
+  },
 ];
 
 export const PORTSWIGGER = {
